@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Khawla Car Rental — Drive Tunisia your way</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --asphalt: #24272c;
+    --asphalt-2: #33373e;
+    --line: #f2c230;      /* road-marking yellow */
+    --sea: #1f5fa8;       /* Sidi Bou Said door blue */
+    --chalk: #f6f7f9;
+    --white: #ffffff;
+    --muted: #6b717b;
+    --radius-lg: 22px;
+    --radius-sm: 8px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    font-variation-settings: "wdth" 100;
+    background: var(--chalk);
+    color: var(--asphalt);
+    line-height: 1.55;
+    font-size: 17px;
+  }
+  a { color: inherit; }
+  img, svg { display: block; max-width: 100%; }
+  :focus-visible { outline: 3px solid var(--line); outline-offset: 3px; }
+
+  .wrap { width: min(1180px, 100% - 40px); margin-inline: auto; }
+
+  /* ---------- Header ---------- */
+  header {
+    position: absolute; inset: 0 0 auto 0; z-index: 10;
+    color: var(--white);
+  }
+  .nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 22px 0;
+  }
+  .logo {
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none; font-weight: 800;
+    font-variation-settings: "wdth" 125; letter-spacing: .02em; font-size: 20px;
+  }
+  .logo-mark {
+    width: 34px; height: 34px; border-radius: 50%;
+    border: 3px solid var(--line);
+    display: grid; place-items: center; font-size: 15px; color: var(--line);
+  }
+  .nav ul { display: flex; gap: 28px; list-style: none; }
+  .nav ul a { text-decoration: none; opacity: .85; font-size: 15px; }
+  .nav ul a:hover { opacity: 1; color: var(--line); }
+  .nav-call {
+    text-decoration: none; font-weight: 700; font-size: 15px;
+    background: var(--line); color: var(--asphalt);
+    padding: 10px 18px; border-radius: 999px;
+  }
+
+  /* ---------- Hero: the road ---------- */
+  .hero {
+    background: var(--asphalt);
+    color: var(--white);
+    padding: 150px 0 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero h1 {
+    font-variation-settings: "wdth" 125;
+    font-weight: 900;
+    font-size: clamp(48px, 9.5vw, 138px);
+    line-height: .92;
+    letter-spacing: -.01em;
+    max-width: 11ch;
+  }
+  .hero p.lead {
+    margin-top: 26px; max-width: 46ch;
+    font-size: 19px; color: #c9ccd2;
+  }
+
+  /* The plate: the one bold element */
+  .plate {
+    display: inline-flex; align-items: center; gap: 18px;
+    margin-top: 34px;
+    background: #000; color: #fff;
+    border: 3px solid #fff; border-radius: 10px;
+    padding: 10px 22px;
+    font-weight: 800; font-size: 26px;
+    font-variation-settings: "wdth" 110;
+    letter-spacing: .06em;
+    box-shadow: 0 0 0 4px #000;
+  }
+  .plate .ar { font-size: 24px; letter-spacing: 0; }
+
+  /* Road strip */
+  .road {
+    margin-top: 70px;
+    height: 120px;
+    background: var(--asphalt-2);
+    position: relative;
+    border-top: 6px solid #fff;
+  }
+  .road::after {
+    content: "";
+    position: absolute; left: 0; right: 0; top: 50%;
+    height: 8px; transform: translateY(-50%);
+    background: repeating-linear-gradient(90deg, var(--line) 0 70px, transparent 70px 120px);
+    animation: drive 1.6s linear 1 both;
+  }
+  @keyframes drive {
+    from { background-position: 600px 0; }
+    to { background-position: 0 0; }
+  }
+
+  /* Booking panel sits on the road */
+  .booking {
+    position: relative; z-index: 2;
+    margin-top: -60px;
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 26px;
+    box-shadow: 0 30px 60px -30px rgba(36,39,44,.45);
+    display: grid;
+    grid-template-columns: 1.3fr 1fr 1fr 1fr auto;
+    gap: 14px;
+    align-items: end;
+  }
+  .field label {
+    display: block; font-size: 13px; font-weight: 600;
+    color: var(--muted); margin-bottom: 6px;
+  }
+  .field input, .field select {
+    width: 100%; font: inherit; font-size: 16px;
+    padding: 13px 14px;
+    border: 2px solid #e2e4e8; border-radius: var(--radius-sm);
+    background: var(--chalk); color: var(--asphalt);
+  }
+  .field input:focus, .field select:focus { border-color: var(--sea); outline: none; }
+  .btn {
+    font: inherit; font-weight: 800; font-size: 16px;
+    border: 0; cursor: pointer;
+    background: var(--sea); color: #fff;
+    padding: 15px 26px; border-radius: var(--radius-sm);
+    text-decoration: none; display: inline-block;
+  }
+  .btn:hover { background: #184c87; }
+
+  /* ---------- Sections ---------- */
+  section { padding: 100px 0; }
+  h2 {
+    font-variation-settings: "wdth" 115;
+    font-weight: 850;
+    font-size: clamp(32px, 4.6vw, 56px);
+    line-height: 1.02;
+    max-width: 18ch;
+  }
+  .section-intro { margin-top: 14px; color: var(--muted); max-width: 52ch; }
+
+  /* ---------- Fleet ---------- */
+  .fleet-grid {
+    margin-top: 50px;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px;
+  }
+  .car {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 26px 26px 22px;
+    display: flex; flex-direction: column;
+    border: 2px solid transparent;
+    transition: border-color .2s;
+  }
+  .car:hover { border-color: var(--asphalt); }
+  .car-art {
+    height: 130px; display: grid; place-items: center;
+    background: var(--chalk); border-radius: 14px; margin-bottom: 20px;
+  }
+  .car-art svg { width: 78%; }
+  .car h3 { font-size: 22px; font-weight: 800; font-variation-settings: "wdth" 110; }
+  .car .model { color: var(--muted); font-size: 15px; }
+  .specs {
+    display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 20px; list-style: none;
+  }
+  .specs li {
+    font-size: 13px; background: var(--chalk);
+    padding: 5px 10px; border-radius: 6px;
+  }
+  .car-foot {
+    margin-top: auto; display: flex; align-items: center; justify-content: space-between;
+    padding-top: 16px; border-top: 2px dashed #e2e4e8;
+  }
+  .price strong { font-size: 28px; font-weight: 900; }
+  .price span { color: var(--muted); font-size: 14px; }
+  .car-foot a {
+    font-weight: 700; font-size: 15px; text-decoration-thickness: 2px;
+    text-underline-offset: 4px; text-decoration-color: var(--line);
+  }
+
+  /* ---------- How it works (a real sequence) ---------- */
+  .how { background: var(--line); }
+  .steps {
+    margin-top: 50px;
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 0; counter-reset: step;
+    position: relative;
+  }
+  .step { padding-right: 36px; position: relative; }
+  .step::before {
+    counter-increment: step;
+    content: counter(step);
+    display: grid; place-items: center;
+    width: 56px; height: 56px; border-radius: 50%;
+    background: var(--asphalt); color: var(--line);
+    font-weight: 900; font-size: 22px; margin-bottom: 20px;
+    position: relative; z-index: 1;
+  }
+  .step:not(:last-child)::after {
+    content: ""; position: absolute; top: 27px; left: 56px; right: 0;
+    border-top: 3px dashed var(--asphalt);
+  }
+  .step h3 { font-size: 21px; font-weight: 800; margin-bottom: 6px; }
+  .step p { max-width: 30ch; }
+
+  /* ---------- Pick-up points ---------- */
+  .points {
+    margin-top: 50px;
+    display: grid; grid-template-columns: 1.4fr 1fr; gap: 22px;
+  }
+  .point-main {
+    background: var(--sea); color: #fff;
+    border-radius: var(--radius-lg); padding: 36px;
+    display: flex; flex-direction: column; justify-content: space-between; min-height: 300px;
+  }
+  .point-main h3 { font-size: 34px; font-weight: 900; font-variation-settings: "wdth" 120; line-height: 1; }
+  .point-main p { max-width: 38ch; opacity: .9; margin-top: 12px; }
+  .point-list { display: grid; gap: 14px; }
+  .point {
+    background: var(--white); border-radius: 14px; padding: 20px 22px;
+    display: flex; justify-content: space-between; align-items: center; gap: 12px;
+  }
+  .point h4 { font-size: 18px; font-weight: 800; }
+  .point p { font-size: 14px; color: var(--muted); }
+  .point .hours { font-size: 13px; font-weight: 700; white-space: nowrap; }
+
+  /* ---------- FAQ ---------- */
+  .faq-list { margin-top: 40px; max-width: 780px; }
+  details { border-bottom: 2px solid #dfe2e6; }
+  summary {
+    cursor: pointer; list-style: none;
+    padding: 22px 40px 22px 0; position: relative;
+    font-weight: 750; font-size: 19px;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary::after {
+    content: "+"; position: absolute; right: 6px; top: 50%;
+    transform: translateY(-50%); font-size: 28px; font-weight: 400;
+    transition: transform .2s;
+  }
+  details[open] summary::after { transform: translateY(-50%) rotate(45deg); }
+  details p { padding: 0 0 22px; color: var(--muted); max-width: 62ch; }
+
+  /* ---------- CTA + Footer ---------- */
+  .cta {
+    background: var(--asphalt); color: #fff; text-align: left;
+    border-top: 8px solid var(--line);
+  }
+  .cta-inner { display: flex; justify-content: space-between; align-items: center; gap: 30px; flex-wrap: wrap; }
+  .cta p { color: #c9ccd2; margin-top: 12px; }
+  .cta .btn { background: var(--line); color: var(--asphalt); font-size: 18px; padding: 18px 30px; }
+  .cta .btn:hover { background: #ffd34d; }
+
+  footer {
+    background: #1b1d21; color: #9aa0a9; padding: 40px 0; font-size: 14px;
+  }
+  .foot { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+  footer a { text-decoration: none; }
+  footer a:hover { color: var(--line); }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 960px) {
+    .booking { grid-template-columns: 1fr 1fr; }
+    .booking .field:first-child, .booking .btn { grid-column: 1 / -1; }
+    .fleet-grid { grid-template-columns: 1fr 1fr; }
+    .points { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 680px) {
+    .nav ul { display: none; }
+    .hero { padding-top: 120px; }
+    .fleet-grid, .steps { grid-template-columns: 1fr; }
+    .steps { gap: 34px; }
+    .step::after { display: none; }
+    .booking { grid-template-columns: 1fr; }
+    section { padding: 70px 0; }
+    .plate { font-size: 20px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .road::after { animation: none; }
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Reusable car silhouette -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="car" viewBox="0 0 240 90">
+    <path d="M18 62c0-9 4-15 14-17l30-6 26-20c5-4 11-6 18-6h52c8 0 14 3 19 9l17 19 26 5c9 2 14 8 14 16v8c0 4-3 6-6 6H24c-4 0-6-2-6-6z" fill="currentColor"/>
+    <path d="M96 22h34v20H74zM138 22h30c4 0 7 2 9 5l12 15h-51z" fill="#dfe8f3"/>
+    <circle cx="62" cy="74" r="15" fill="#24272c"/><circle cx="62" cy="74" r="6" fill="#c9ccd2"/>
+    <circle cx="186" cy="74" r="15" fill="#24272c"/><circle cx="186" cy="74" r="6" fill="#c9ccd2"/>
+  </symbol>
+</svg>
+
+<header>
+  <div class="wrap nav">
+    <a href="#" class="logo"><span class="logo-mark">K</span>Khawla Cars</a>
+    <ul>
+      <li><a href="#fleet">Our cars</a></li>
+      <li><a href="#how">How it works</a></li>
+      <li><a href="#points">Pick-up points</a></li>
+      <li><a href="#faq">Questions</a></li>
+    </ul>
+    <a href="tel:+21600000000" class="nav-call">Call us</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero" style="padding-bottom:0">
+    <div class="wrap">
+      <h1>Your keys are waiting.</h1>
+      <p class="lead">Clean, insured cars from Tunis to Djerba. Book in two minutes, pick up at the airport or have it brought to your door.</p>
+      <div class="plate" aria-label="Khawla Cars license plate">
+        <span>2026</span><span class="ar">تونس</span><span>KHAWLA</span>
+      </div>
+    </div>
+    <div class="road" aria-hidden="true"></div>
+  </section>
+
+  <div class="wrap">
+    <form class="booking" action="#" aria-label="Check car availability">
+      <div class="field">
+        <label for="where">Pick-up location</label>
+        <select id="where">
+          <option>Tunis-Carthage Airport</option>
+          <option>Tunis city centre</option>
+          <option>Sousse</option>
+          <option>Djerba-Zarzis Airport</option>
+          <option>Delivery to my address</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="from">Pick-up date</label>
+        <input type="date" id="from">
+      </div>
+      <div class="field">
+        <label for="to">Return date</label>
+        <input type="date" id="to">
+      </div>
+      <div class="field">
+        <label for="type">Car type</label>
+        <select id="type">
+          <option>Any car</option>
+          <option>City</option>
+          <option>Family</option>
+          <option>SUV</option>
+        </select>
+      </div>
+      <button class="btn" type="submit">Check availability</button>
+    </form>
+  </div>
+
+  <section id="fleet">
+    <div class="wrap">
+      <h2>Pick the car that fits your trip</h2>
+      <p class="section-intro">Every car is under three years old, fully insured, and handed over with a full tank.</p>
+
+      <div class="fleet-grid">
+        <article class="car">
+          <div class="car-art"><svg style="color:#f2c230"><use href="#car"/></svg></div>
+          <h3>City</h3>
+          <p class="model">Kia Picanto or similar</p>
+          <ul class="specs"><li>4 seats</li><li>Manual</li><li>Air conditioning</li><li>Easy to park</li></ul>
+          <div class="car-foot">
+            <p class="price"><strong>85 DT</strong> <span>/ day</span></p>
+            <a href="#">Book this car</a>
+          </div>
+        </article>
+
+        <article class="car">
+          <div class="car-art"><svg style="color:#1f5fa8"><use href="#car"/></svg></div>
+          <h3>Family</h3>
+          <p class="model">Peugeot 301 or similar</p>
+          <ul class="specs"><li>5 seats</li><li>Automatic</li><li>Large boot</li><li>Child seat on request</li></ul>
+          <div class="car-foot">
+            <p class="price"><strong>120 DT</strong> <span>/ day</span></p>
+            <a href="#">Book this car</a>
+          </div>
+        </article>
+
+        <article class="car">
+          <div class="car-art"><svg style="color:#24272c"><use href="#car"/></svg></div>
+          <h3>SUV</h3>
+          <p class="model">Hyundai Tucson or similar</p>
+          <ul class="specs"><li>5 seats</li><li>Automatic</li><li>GPS included</li><li>Made for the south</li></ul>
+          <div class="car-foot">
+            <p class="price"><strong>190 DT</strong> <span>/ day</span></p>
+            <a href="#">Book this car</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="how" class="how">
+    <div class="wrap">
+      <h2>From booking to driving in three steps</h2>
+      <div class="steps">
+        <div class="step">
+          <h3>Choose your car</h3>
+          <p>Pick your dates and location. You see the full price up front, no surprises at the counter.</p>
+        </div>
+        <div class="step">
+          <h3>Confirm by WhatsApp</h3>
+          <p>We send you a confirmation within the hour. Pay a small deposit, the rest on pick-up.</p>
+        </div>
+        <div class="step">
+          <h3>Pick up and go</h3>
+          <p>Meet us at the airport arrivals hall or at your address. Bring your licence and ID.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="points">
+    <div class="wrap">
+      <h2>Where to get your car</h2>
+      <div class="points">
+        <div class="point-main">
+          <div>
+            <h3>We bring it to you</h3>
+            <p>Anywhere in Greater Tunis, free for rentals of three days or more. Just send us your address.</p>
+          </div>
+          <a class="btn" href="https://wa.me/21600000000" style="background:#fff;color:#1f5fa8;align-self:flex-start;margin-top:24px">Message us on WhatsApp</a>
+        </div>
+        <div class="point-list">
+          <div class="point"><div><h4>Tunis-Carthage Airport</h4><p>Arrivals hall, meet at exit 2</p></div><span class="hours">24 / 7</span></div>
+          <div class="point"><div><h4>Tunis city centre</h4><p>Avenue Habib Bourguiba</p></div><span class="hours">8:00 – 20:00</span></div>
+          <div class="point"><div><h4>Sousse</h4><p>Near Port El Kantaoui</p></div><span class="hours">8:00 – 20:00</span></div>
+          <div class="point"><div><h4>Djerba-Zarzis Airport</h4><p>Arrivals hall</p></div><span class="hours">On booking</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" style="padding-top:0">
+    <div class="wrap">
+      <h2>Good to know</h2>
+      <div class="faq-list">
+        <details>
+          <summary>What do I need to rent a car?</summary>
+          <p>A driving licence held for at least two years, your ID card or passport, and a deposit. Drivers must be 23 or older.</p>
+        </details>
+        <details>
+          <summary>Is insurance included?</summary>
+          <p>Yes. Every rental includes full insurance. You can reduce the deductible to zero for 15 DT per day.</p>
+        </details>
+        <details>
+          <summary>Can I return the car in another city?</summary>
+          <p>Yes, between any of our pick-up points. A one-way fee applies depending on the distance.</p>
+        </details>
+        <details>
+          <summary>What happens if I return the car late?</summary>
+          <p>You have a free 1-hour grace period. After that, an extra day is charged. Message us if you're running late and we'll sort it out.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="wrap cta-inner">
+      <div>
+        <h2>Ready to hit the road?</h2>
+        <p>Tell us your dates and we'll have a car ready.</p>
+      </div>
+      <a class="btn" href="#">Book your car</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 Khawla Cars. All rights reserved.</span>
+    <span><a href="tel:+21600000000">+216 00 000 000</a> &nbsp;|&nbsp; <a href="mailto:contact@khawlacars.tn">contact@khawlacars.tn</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
